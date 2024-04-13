@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     loadHTMLFileIntoSection('diagrams.html', 'diagrams', 'diagram.js');
+    loadHTMLFileIntoSection('slider.html', 'carousel', 'slider.js')
 
 });
 
