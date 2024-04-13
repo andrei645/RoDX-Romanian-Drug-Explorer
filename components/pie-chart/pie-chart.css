@@ -1,0 +1,36 @@
+.charts-wrapper__pie-chart-container{
+
+    display: flex;
+      justify-content: center;
+      padding: 1rem;
+      margin: 1rem;
+  }
+  
+  .charts-wrapper__pie-chart-container__wrapper {
+      margin: 5vmin auto;
+      border-radius: 50%;
+      width: 20vmin;
+      height: 20vmin;
+      overflow: hidden;
+      background: linear-gradient(-21deg, #2196f3 50%, transparent 50%), linear-gradient(to right, #2196f3 50%, #ffc107 50%);
+    }
+  
+    .charts-wrapper__container-flex{
+      display: flex;
+      justify-content: space-evenly;
+    }
+    
+    .charts-wrapper__pie-chart{
+  
+      width: 100%;
+      background-color: white;
+    }
+
+    .charts-wrapper__pie-chart-container__wrapper__item-html {
+      margin: 10vmin 0 0 50vmin;
+    }
+    
+    .charts-wrapper__pie-chart-container__wrapper__item-css {
+      margin: 5vmin;
+    }
+  
