@@ -1,5 +1,5 @@
 const overlay = document.getElementById("overlay");
-const loginBtn = document.getElementById("loginBtn");
+const loginBtn = document.getElementById("join-comunity");
 const loginBox = document.querySelector(".login-form");
 const registerForm = document.querySelector(".register-form");
 const loginButton = document.getElementById("loginButton");

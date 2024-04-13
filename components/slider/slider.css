@@ -1,14 +1,4 @@
-body {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 20% 700px 20%;
-    grid-template-rows: 20% 500px 20%;
-}
-
 .carousel {
-    grid-row: 2;
-    grid-column: 2;
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -20,15 +10,16 @@ body {
   }
   
   .slide {
-    flex: 0 0 80%; /* Adjust width of slides as needed */
-    margin: 0 3%; /* Adjust margin to show partial neighbors */
+    position: relative;
+    flex: 0 0 75%;
+    margin: 0 30px; 
   }
   
-  img {
+  .slide img {
+    border-radius: 35px;
     width: 100%;
     height: auto;
-    height: 100%;
-    object-fit: cover;
+    aspect-ratio: 16 / 10;
   }
   
   .control {
@@ -49,5 +40,25 @@ body {
   
   .next {
     right: 0;
+  }
+  
+  .caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    z-index: 1; /* Ensure captions are above the slides */
+  }
+  
+  .caption h2 {
+    margin: 0;
+  }
+  
+  .caption p {
+    margin: 10px 0;
   }
   
