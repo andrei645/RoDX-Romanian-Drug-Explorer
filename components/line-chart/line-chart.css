@@ -10,8 +10,8 @@
 }
 
 .line-chart-container {
-  width: 400px;
-  height: 200px;
+  max-width: 100%;
+  height: 220px;
   margin: 20px;
 }
 

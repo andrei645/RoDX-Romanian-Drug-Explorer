@@ -21,7 +21,7 @@ var objectElement = document.getElementById("myMap");
   
       county.addEventListener('click', function(event){
         var county = this.getAttribute('name');
-        window.location.href = "charts.html?country=" + encodeURIComponent(county);
+        window.location.href = "charts.html?county=" + encodeURIComponent(county);
         
       });
       
