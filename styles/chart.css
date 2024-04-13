@@ -1,0 +1,9 @@
+.charts-container__flex-container{
+    
+    display: flex;
+    justify-content: space-evenly;
+}
+.charts-container__flex-container-item{
+
+    width: 100%;
+}
