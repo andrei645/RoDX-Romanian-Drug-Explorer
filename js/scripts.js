@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    loadHTMLFileIntoSection('diagrams.html', 'diagrams', 'diagram.js');
+    loadHTMLFileIntoSection('diagrams.html', 'diagrams', 'js/diagram.js');
 
 });
 
@@ -14,7 +14,7 @@ function loadHTMLFileIntoSection(filePath, sectionId, scriptName) {
         .then(htmlContent => {
             document.getElementById(sectionId).innerHTML = htmlContent;
             const scriptElement = document.createElement('script');
-            scriptElement.src = 'js/' + scriptName;
+            scriptElement.src = scriptName;
            
             document.body.appendChild(scriptElement);
         })

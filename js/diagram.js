@@ -50,7 +50,7 @@ var objectElement = document.getElementById("myMap");
     paths.forEach(function (path) {
       path.addEventListener('click', function(event){
         var county = this.getAttribute('name');
-        window.location.href = "chart.html?county=" + encodeURIComponent(county);
+        window.location.href = "charts.html?county=" + encodeURIComponent(county);
         
       });
       path.addEventListener('mouseenter', function (event) {
