@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/chart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <title>RoDX</title>
 </head>
+
 <body>
 
     <section class="navigation">
-        <div class="navigation-wrapper">
-            <ul class="navigation-items">
-                <li class="navigation-items__item">Explore</li>
-                <li class="navigation-items__item">Community</li>
-                <li class="navigation-items__item">More</li>
-            </ul>
+        <div class="navigation-container">
+            <div class="navigation-wrapper">
+                <div class="navigation-container__county-details">
+                    <h1 id="county-name"></h1>
+                    <p id="county-description"></p>
+                    <a href="index.html">Back to map</a>
+                </div>
+            </div>
+            <div class="navigation-container__image">
+                <img src="assets/pictures/drug.png">
+            </div>
         </div>
     </section>
     <section id="charts">
         <div class="charts-container">
-            <div id="charts-container__column-chart" class="charts-container__column-chart"></div>
             <div class="charts-container__flex-container">
-                <div id="charts-container__flex-container-pie-chart" class="charts-container__flex-container-item"><p>Chart 2</p></div>
-                <div id="charts-container__flex-container-line-chart" class="charts-container__flex-container-item"><p>Chart 3</p></div>
+                <div id="charts-container__flex-container-pie-chart" class="charts-container__flex-container-item">
+                    <p>Chart 2</p>
+                </div>
+                <div id="charts-container__column-chart" class="charts-container__column-chart"></div>
             </div>
-        </div>
+            <div class="charts-container__flex-container">
+                <div id="charts-container__flex-container-line-chart" class="charts-container__flex-container-item">
+                </div>
+                <div class="charts-container__flex-container-item_details-line-chart">
+                    <p>Test safasfs</p>
+                </div>
+            </div>
     </section>
 
     <script type="module" src="js/chart.js"></script>
 </body>
+
 </html>
