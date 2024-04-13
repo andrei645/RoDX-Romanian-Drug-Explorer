@@ -25,10 +25,7 @@
       width: 100%;
       background-color: white;
     }
-  .charts-wrapper__line-chart{
-    width: 100%;
-    background: white;
-  }
+
     .charts-wrapper__pie-chart-container__wrapper__item-html {
       margin: 10vmin 0 0 50vmin;
     }
