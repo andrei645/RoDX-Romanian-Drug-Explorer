@@ -1,0 +1,9 @@
+#myMap{
+    position: relative;
+    top: -35px;
+}
+
+.diagrams-container{
+    display: flex;
+    justify-content: center;
+}
