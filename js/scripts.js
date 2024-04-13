@@ -1,27 +1,9 @@
-document.addEventListener('DOMContentLoaded', function () {
-    loadHTMLFileIntoSection('diagrams.html', 'diagrams', 'js/diagram.js');
+import { loadHTMLFileIntoSection } from "../components/utils.js";
 
+document.addEventListener('DOMContentLoaded', function () {
+    loadHTMLFileIntoSection('components/diagram/diagrams.html', 'diagrams', 'components/diagram/diagram.js');
 });
 
-function loadHTMLFileIntoSection(filePath, sectionId, scriptName) {
-    fetch(filePath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(htmlContent => {
-            document.getElementById(sectionId).innerHTML = htmlContent;
-            const scriptElement = document.createElement('script');
-            scriptElement.src = scriptName;
-           
-            document.body.appendChild(scriptElement);
-        })
-        .catch(error => {
-            console.error('There was a problem fetching the HTML file:', error);
-        });
-}
 
 const screenWidth = window.innerWidth;
 const navigationList = document.getElementsByClassName("navigation-items");

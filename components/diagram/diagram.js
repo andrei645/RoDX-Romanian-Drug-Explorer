@@ -1,8 +1,6 @@
-console.log("entere")
-
 var objectElement = document.getElementById("myMap");
-  
-    objectElement?.addEventListener("load", function () {
+
+  objectElement?.addEventListener("load", function () {
       var svgDoc = objectElement.contentDocument;
   
       if (svgDoc && svgDoc.getElementsByTagName("svg").length > 0) {
