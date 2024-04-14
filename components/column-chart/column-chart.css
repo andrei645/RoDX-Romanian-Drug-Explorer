@@ -74,3 +74,35 @@
   height: 1px;
   background-color: #ccc;
 }
+.column-chart-labels{
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 10px;
+  
+}
+
+.column-chart-labels span{
+
+  font-size: 12px;
+}
+.column-chart-labels .male-color{
+  width: 15px;
+  height: 10px;
+  background-color: #105cad;
+  position: relative;
+  top: 2px;
+  margin-right: 5px;
+}
+
+.column-chart-labels .female-color{
+  width: 15px;
+  height: 10px;
+  background-color: #007bff;
+  position: relative;
+  top: 2px;
+  margin-right: 5px;
+
+}
+.column-chart-labels__flex{
+  display: flex;
+}
