@@ -1,36 +1,201 @@
+
+.pie-chart-title{
+  margin: 0px;
+  position: relative;
+  top: 20px;
+}
 .charts-wrapper__pie-chart-container{
 
-    display: flex;
-      justify-content: center;
-      padding: 1rem;
-      margin: 1rem;
-  }
-  
-  .charts-wrapper__pie-chart-container__wrapper {
-      margin: 5vmin auto;
-      border-radius: 50%;
-      width: 20vmin;
-      height: 20vmin;
-      overflow: hidden;
-      background: linear-gradient(-21deg, #2196f3 50%, transparent 50%), linear-gradient(to right, #2196f3 50%, #ffc107 50%);
-    }
-  
-    .charts-wrapper__container-flex{
-      display: flex;
-      justify-content: space-evenly;
-    }
-    
-    .charts-wrapper__pie-chart{
-  
-      width: 100%;
-      background-color: white;
-    }
+  display: flex;
 
-    .charts-wrapper__pie-chart-container__wrapper__item-html {
-      margin: 10vmin 0 0 50vmin;
-    }
-    
-    .charts-wrapper__pie-chart-container__wrapper__item-css {
-      margin: 5vmin;
-    }
-  
+}
+
+.pie-chart__labels{
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+}
+.pie-wrap .purple p{
+  position: absolute;
+  top: 140px;
+}
+.pie-wrap .purple p:first-child{
+  top: 70px;
+}
+
+.pie-wrap .green p{
+  position: absolute;
+  top: 20px;
+}
+
+.wheat p{
+  left: 10px;
+  position: absolute;
+}
+
+.pie-wrap .green p:first-child{
+  top: 0px;
+}
+
+.pink p{
+  position: relative;
+  left: -20px;
+  top: 0px;
+}
+
+
+.pie-wrap .pink, .pie-wrap .wheat{
+  justify-content: flex-start;
+}
+
+
+
+.pink{
+  background-color: pink;
+  height:50%;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 50%;
+  clip-path: polygon(0 0, 100% 0%, 0% 100%);
+}
+
+.purple{
+  background-color: yellow;
+  color: black; 
+  height:50%;
+  width: 50%;
+  right: 0;
+  top: 0;
+  position: absolute;
+  clip-path:polygon(0% 100%, 100% 0%, 100% 100%);
+}
+
+.green{
+  background-color: limegreen;
+  height:50%;
+  width: 50%;
+  right: 0;
+  top: 50%;
+  position: absolute;
+  clip-path:polygon(0% 0%, 100% 0%, 100% 100%);
+}
+
+.wheat{
+  background-color: grey;
+  height:50%;
+  width: 50%;
+  right: 0;
+  top: 50%;
+  position: absolute;
+  clip-path:polygon(0% 0%, 100% 100%, 0% 100%);
+}
+.pie-wrap .entry{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* *the individual entries* */
+
+.sky-blue{
+  background-color: red;
+  height:50%;
+  width: 50%;
+  display: block;
+}
+
+.light-yellow{
+  background-color: blue;
+  height:50%;
+  width: 50%;
+}
+.wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pie-wrap{
+  width: 250px;
+  height: 250px;
+  margin: 10% 20px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 50%;
+  color: black;
+}
+
+.key-wrap label{
+  display: block;
+  border: 1px solid;
+  width: 50px;
+  text-align: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  }
+
+  input[type="radio"]{
+    display: none;
+}
+.marijuana-label{
+  width: 70px;
+  background-color: red;
+  padding: 3px;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  border: 2px solid grey;
+}
+.cocaine-label{
+  width: 70px;
+  background-color: blue;
+  padding: 3px;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  border: 2px solid grey;
+
+}
+.MDMA-label{
+  width: 70px;
+  background-color: grey;
+  padding: 3px;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  border: 2px solid grey;
+}
+.heroin-label{
+  width: 70px;
+  background-color: limegreen;
+  padding: 3px;
+  text-align: center;
+  color: white;
+  font-size: 10px;
+  border: 2px solid grey;
+}
+.amphetamine-label{
+  width: 70px;
+  text-align: center;
+  background-color: pink;
+  padding: 3px;
+  color: black;
+  font-size: 10px;
+  border: 2px solid grey;
+}
+.cannabis-resin-label{
+  text-align: center;
+  width: 70px;
+  background-color: skyblue;
+  padding: 3px;
+  color: black;
+  font-size: 10px;
+  border: 2px solid grey;
+}

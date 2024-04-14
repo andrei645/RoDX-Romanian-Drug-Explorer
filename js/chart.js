@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var county = urlParams.get('county');
     
     const countyDetails = romanianCounties.find(countyElem => countyElem.name === county);
-
     if(countyDetails){
         const populationText = countyDetails.name + ' has a population of ' + countyDetails.population + ' inhabitants.';
         document.getElementById('county-name').textContent = countyDetails.name;
