@@ -121,6 +121,41 @@ body {
     width: 40%;
     padding-left: 0rem;
 }
+.charts-container__flex-container__line-chart-container{
+    display: flex;
+    margin-top: 10px;
+}
+@media screen and (max-width: 850px){
+    .charts-container__flex-container{
+        display: block;
+        text-align: center;
+    }
+    .charts-wrapper__pie-chart-container{
+        justify-content: center;
+    }
+    .charts-container__flex-container-item{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 730px){
+    .navigation-container__image{
+        display: none;
+    }
+    .charts-container__flex-container__line-chart-container{
+        display: none !important;
+    }
+}
+@media screen and (max-width: 550px){
+    #pie-chart{
+        display: block;
+    }
+    .pie-chart__labels{
+        display: block !important;
+    }
+    body{
+        gap: 0px !important;
+    }
+}
 
 .display-flex span{
     font-size: 12px;
