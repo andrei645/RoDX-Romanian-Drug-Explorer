@@ -24,13 +24,13 @@ body {
     grid-row: 1;
     position: relative;
     padding: 4px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.mission h2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the h2 element */
+.mission-title {
     color: rgb(202,213,245);
     margin: 0;
     letter-spacing: 2px;
@@ -38,6 +38,16 @@ body {
     background-color: #0d1428;
     border-radius: 10px;
     padding: 8px 16px;
+    margin-top: 12px;
+}
+
+#join-comunity {
+    color: #0d1428;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    padding: 16px 8px;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 #landing-page-slider {
@@ -45,4 +55,49 @@ body {
     grid-column: 1 / span 3;
     width: 80%;
     margin: 0 auto;
+}
+
+#banner-wrapper {
+    grid-column: 1 / span 3;
+    grid-row: 3;
+    background-color: #0d1428;
+    margin-top: -80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#banner-wrapper h2{
+    padding-top: 60px;
+    color: rgb(202,213,245);
+    letter-spacing: 2px;
+    font-size: 2rem;
+}
+
+#banner-wrapper p {
+    color: rgb(202,213,245);
+    width: 60%;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    padding-bottom: 48px;
+}
+
+@media screen and (max-width : 768px) {
+    .mission {
+        grid-column: 1 / span 3;
+        grid-row: 1;
+        margin-left: -16px;
+    }
+    .mission-title {
+        font-size: 1.5rem;
+    }
+    #join-comunity{
+        font-size: 16px;
+        text-align: center;
+    }
+    #landing-page-slider {
+        grid-row: 2;
+        width: 100%;
+    }
 }
