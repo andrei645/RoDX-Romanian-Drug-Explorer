@@ -11,6 +11,7 @@ export const loadHTMLFileIntoSection = (filePath, sectionId, scriptName) => {
             document.getElementById(sectionId).innerHTML = htmlContent;
             const scriptElement = document.createElement('script');
             scriptElement.src = scriptName;
+            scriptElement.type = "module";
            
             document.body.appendChild(scriptElement);
         })

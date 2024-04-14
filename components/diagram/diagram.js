@@ -1,3 +1,4 @@
+import { romanianCounties } from "../utils.js";
 var objectElement = document.getElementById("myMap");
 
   objectElement?.addEventListener("load", function () {
@@ -52,7 +53,6 @@ var objectElement = document.getElementById("myMap");
         
       });
       path.addEventListener('mouseenter', function (event) {
-        var countyName = this.getAttribute('name');
   
         this.setAttribute('fill', '#3da4d4');
   
@@ -62,4 +62,42 @@ var objectElement = document.getElementById("myMap");
       });
     });
   }
+
+
+
+const result = document.getElementById('result');
+const filter = document.getElementById('filter');
+const listItems = [];
+
+
+getData();
+
+filter.addEventListener('input', (e) =>filterData(e.target.value))
+
+
+async function getData(){
+
+    const counties = [...romanianCounties];
+    result.innerHTML = '';
+    counties.forEach((county, index) => {
+        const li = document.createElement('li');
+        li.classList = `${index % 2 != 0 ? "user-background" : ""}`
+        listItems.push(li);
+        li.innerHTML = `
+        <div class="user-info">
+            <a class="county-link" href="charts.html?county=${county.name}">${county.name}</a>
+            <p>Population: ${county.population} </p>
+        </div>
+        `
+        result.appendChild(li);
+    });
+}
+
+function filterData(typed){
+    listItems.forEach(element => {
+        if(element.innerText.toLowerCase().includes(typed.toLowerCase())){
+            element.classList.remove('hide');
+        } else element.classList.add('hide');
+    })
+}
   
