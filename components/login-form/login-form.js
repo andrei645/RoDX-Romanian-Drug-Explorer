@@ -59,6 +59,7 @@ function checkUsers() {
         document.querySelector(".go-to-login").innerText = "All fields are required";
     }
     console.log("Updated loginUsersArray:", loginUsersArray);
+    window.location.href = "../../index.html";
 }
 
 function checkLoginFields() {
