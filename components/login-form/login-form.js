@@ -61,22 +61,6 @@ function checkUsers() {
     console.log("Updated loginUsersArray:", loginUsersArray);
 }
 
-// function checkLoggedUser() {
-//     const existingUser = loginUsersArray.find(user => user.username === document.getElementById("username").value);
-
-//     if (checkLoginFields()) {
-//         if (existingUser) {
-//             document.querySelector(".go-to-register").innerText = "Welcome";
-//         } else {
-//             document.querySelector(".go-to-register").innerText = "User does not exist. Register?";
-//             document.querySelector(".go-to-register").classList.add("wrong");
-//         }
-//     } else {
-//         document.querySelector(".go-to-register").classList.add("wrong");
-//         document.querySelector(".go-to-register").innerText = "All fields are required";
-//     }
-// }
-
 function checkLoginFields() {
     return document.getElementById("username").value !== "" && document.getElementById("password").value !== "";
 }
@@ -93,7 +77,6 @@ function checkLoggedUser() {
         const existingUser = loginUsersArray.find(user => user.username === username && user.password === password);
 
         if (existingUser) {
-            // User exists, redirect to index.html
             window.location.href = "../../index.html";
         } else {
             document.querySelector(".go-to-register").innerText = "User does not exist. Register?";
