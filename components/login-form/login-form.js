@@ -3,23 +3,18 @@ const loginBtn = document.getElementById("join-comunity");
 const loginBox = document.querySelector(".login-form");
 const registerForm = document.querySelector(".register-form");
 const loginButton = document.getElementById("loginButton");
-let registeredUsers = [];
-const loginUsersArray = [];
-const object = {
-    username : document.getElementById("username").value,
+const loginUsersArray = JSON.parse(localStorage.getItem("users")) || [];
 
-}
-
-loginBtn.addEventListener("click", function() {
+document.addEventListener("DOMContentLoaded", function() {
     overlay.style.display = "block";
     showLoginForm();
 });
 
-document.body.addEventListener("click" , (e) => {
-    if(!loginBox.contains(e.target) && e.target != loginBtn && !registerForm.contains(e.target)) {
+document.body.addEventListener("click", (e) => {
+    if (!loginBox.contains(e.target) && e.target != loginBtn && !registerForm.contains(e.target)) {
         overlay.style.display = "none";
     }
-})
+});
 
 function showRegisterForm() {
     loginBox.style.display = "none";
@@ -27,23 +22,32 @@ function showRegisterForm() {
 }
 
 function showLoginForm() {
-    loginBox.style.display= "block";
-    registerForm.style.display ="none";
+    loginBox.style.display = "block";
+    registerForm.style.display = "none";
+}
+
+function saveUser(username, email, password) {
+    const newUserObject = {
+        username: username,
+        email: email,
+        password: password
+    };
+    loginUsersArray.push(newUserObject);
+    localStorage.setItem("users", JSON.stringify(loginUsersArray));
+    console.log("New user added:", newUserObject);
 }
 
 function checkUsers() {
     const existingUser = loginUsersArray.find(user => user.username === document.getElementById("regUsername").value);
 
-    if(checkRegisterFields()) {
+    if (checkRegisterFields()) {
         if (!existingUser) {
-            const newUserObject = {
-                username: document.getElementById("regUsername").value,
-                email : document.getElementById("regEmail").value,
-                password: document.getElementById("regPassword").value
-            };
-            loginUsersArray.push(newUserObject);
+            saveUser(
+                document.getElementById("regUsername").value,
+                document.getElementById("regEmail").value,
+                document.getElementById("regPassword").value
+            );
             document.querySelector(".go-to-login").classList.remove("wrong");
-            console.log("New user added:", newUserObject);
             overlay.style.display = "none";
         } else {
             document.querySelector(".go-to-login").classList.add("wrong");
@@ -57,15 +61,43 @@ function checkUsers() {
     console.log("Updated loginUsersArray:", loginUsersArray);
 }
 
-function checkLoggedUser(){
-    const existingUser = loginUsersArray.find(user => user.username === document.getElementById("username").value);
+// function checkLoggedUser() {
+//     const existingUser = loginUsersArray.find(user => user.username === document.getElementById("username").value);
+
+//     if (checkLoginFields()) {
+//         if (existingUser) {
+//             document.querySelector(".go-to-register").innerText = "Welcome";
+//         } else {
+//             document.querySelector(".go-to-register").innerText = "User does not exist. Register?";
+//             document.querySelector(".go-to-register").classList.add("wrong");
+//         }
+//     } else {
+//         document.querySelector(".go-to-register").classList.add("wrong");
+//         document.querySelector(".go-to-register").innerText = "All fields are required";
+//     }
+// }
+
+function checkLoginFields() {
+    return document.getElementById("username").value !== "" && document.getElementById("password").value !== "";
+}
+
+function checkRegisterFields() {
+    return document.getElementById("regUsername").value !== "" && document.getElementById("regEmail").value !== "" && document.getElementById("regPassword").value !== "";
+}
+
+function checkLoggedUser() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
     if (checkLoginFields()) {
-    if(existingUser) {
-        document.querySelector(".go-to-register").innerText = "Welcome";
-    } else {
-        document.querySelector(".go-to-register").innerText = "User does not exist. Register?";
-        document.querySelector(".go-to-register").classList.add("wrong");
+        const existingUser = loginUsersArray.find(user => user.username === username && user.password === password);
+
+        if (existingUser) {
+            // User exists, redirect to index.html
+            window.location.href = "../../index.html";
+        } else {
+            document.querySelector(".go-to-register").innerText = "User does not exist. Register?";
+            document.querySelector(".go-to-register").classList.add("wrong");
         }
     } else {
         document.querySelector(".go-to-register").classList.add("wrong");
@@ -73,20 +105,3 @@ function checkLoggedUser(){
     }
 }
 
-function checkLoginFields(){
-    if(document.getElementById("username").value !== "" && document.getElementById("password").value !== "") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function checkRegisterFields(){
-    if(document.getElementById("regUsername").value !== "" && document.getElementById("regEmail").value !== "" && 
-    document.getElementById("regPassword").value !== "") {
-        return true;
-    }
-    else {
-        return false;
-    }
-}

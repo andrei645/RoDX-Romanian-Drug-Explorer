@@ -15,3 +15,7 @@ function loadLoginForm() {
         console.log("test");
     })
 }
+
+document.getElementById("support-us-btn").addEventListener("click", function() {
+    window.location.href = "./components/payment/payment-form.html";
+});
