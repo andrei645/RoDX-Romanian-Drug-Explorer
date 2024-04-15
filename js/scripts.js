@@ -1,7 +1,9 @@
-import { loadHTMLFileIntoSection } from "../components/utils.js";
+import { loadHTMLFileIntoSection, romanianCounties } from "../components/utils.js";
 
 document.addEventListener('DOMContentLoaded', function () {
     loadHTMLFileIntoSection('components/diagram/diagrams.html', 'diagrams', 'components/diagram/diagram.js');
+    loadHTMLFileIntoSection('components/faq/faq.html', 'faq', 'components/faq/faq.js');
+
 });
 
 
