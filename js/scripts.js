@@ -21,3 +21,11 @@ function loadLoginForm() {
 document.getElementById("support-us-btn").addEventListener("click", function() {
     window.location.href = "./components/payment/payment-form.html";
 });
+
+document.getElementById("explore-btn").addEventListener("click", function() {
+    window.location.href = "./index.html";
+});
+
+document.getElementById("community-btn").addEventListener("click", function() {
+    window.location.href = "./landing-page.html";
+});

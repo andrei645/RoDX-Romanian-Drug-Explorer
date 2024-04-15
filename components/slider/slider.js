@@ -12,7 +12,7 @@ function goToSlide(index) {
     currentIndex = 0; // Wrap around to the first slide
   }
   if(window.innerWidth <= 768) {
-    slides.style.transform = `translateX(-${window.innerWidth * currentIndex -25}px)`;
+    slides.style.transform = `translateX(-${window.innerWidth * currentIndex - 80}px)`;
     } else if(window.innerWidth <= 1024){
       slides.style.transform = `translateX(-${window.innerWidth * currentIndex}px)`;
     } else {
