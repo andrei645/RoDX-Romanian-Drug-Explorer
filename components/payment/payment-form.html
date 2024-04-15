@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="payment-form.css">
+</head>
+<body>
+    <div class="container-left"></div>
+    <div class="card-front">
+        <div class="circles">
+        <div class="circles-big"></div>
+        <div class="circles-small"></div>
+    </div>
+    <p class="card-front-number">0000 0000 0000 0000</p>
+    <p class="card-front-name">Name placeholder</p>
+    <p class="card-front-date">00 / 00</p>
+    </div>
+    <div class="card-back">
+        <div class="card-back__hl"></div>
+        <div class="card-back__cvc-container">
+            <span class="card-cvc">000</span>
+        </div>
+    </div>
+    <div class="container-right">
+        <div class="form-container">
+            <label>CARDHOLDER NAME</label>
+            <input type="text" placeholder="e.g. Jane Appleseed" id="card-name">
+            <p class="error-for-name hidden">You have to enter the caldhorder name</p>
+            <label>CARD NUMBER</label>
+            <input type="text" placeholder="e.g. 1234 5678 9123 0000" id="card-number">
+            <p class="error-for-number hidden">Please enter a valid card number</p>
+            <div class="details">
+               <div class="details-date">
+                <label>EXP DATE (MM/YY)</label>
+                <input type="text" placeholder="MM" id="details-inputs-date-m">
+                <input type="text" placeholder="YY" id="details-inputs-date-y">
+                <p class="error-for-date hidden">Wrong date format</p>
+               </div>
+               <div class="details-cvc">
+                <label>CVC</label>
+                <input type="text" placeholder="e.g. 123" id="details-inputs-cvc">
+                <p class="error-for-cvc hidden">Wron CVC format</p>
+               </div>
+            </div>
+            <span class="error-for-date hidden">Invalid date format</span>
+            <button type="submit" class="btn">Confirm</button>
+        </div>
+    </div>
+    
+    <script src="payment-form.js"></script>
+</body>
+</html>

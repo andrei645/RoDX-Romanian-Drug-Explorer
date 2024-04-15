@@ -1,0 +1,139 @@
+body {
+    font-family: system-ui;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 15vw 1fr 15vw;
+    grid-template-rows: 15vh 1fr 25vh;
+    background: rgb(202,213,245);
+    background: radial-gradient(circle, rgba(202,213,245,1) 0%, rgba(186,208,235,1) 100%);
+    gap: 15px;
+}
+
+.join-comunity {
+    grid-row: 1;
+    grid-column: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mission {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    padding: 4px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mission-title {
+    color: rgb(202,213,245);
+    margin: 0;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    background-color: #0d1428;
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin-top: 12px;
+}
+
+#join-comunity {
+    color: #0d1428;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    padding: 16px 8px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#landing-page-slider {
+    grid-row: 2;
+    grid-column: 1 / span 3;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#banner-wrapper {
+    grid-column: 1 / span 3;
+    grid-row: 3;
+    background-color: #0d1428;
+    margin-top: -130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#banner-wrapper h2{
+    padding-top: 150px;
+    color: rgb(202,213,245);
+    letter-spacing: 2px;
+    font-size: 2rem;
+}
+
+#banner-wrapper p {
+    color: rgb(202,213,245);
+    width: 60%;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    padding-bottom: 48px;
+}
+
+@media screen and (max-width : 1024px) {
+    #banner-wrapper {
+        margin-top: -250px;
+    }
+    #banner-wrapper h2 {
+        padding-top: 100px;
+    }
+    #banner-wrapper p{
+        padding-top: 24px;
+    }
+}
+
+@media screen and (max-width : 768px) {
+    body {
+        grid-template-columns: 1fr ;
+        grid-template-rows: 15vh 1fr 25vh;
+        column-gap: 0;
+        row-gap: 15px;
+        margin: 0;
+    }
+    .mission {
+        grid-column: 1 / span 3;
+        grid-row: 1;
+        max-width: 100vw;
+    }
+    .mission-title {
+        font-size: 1.5rem;
+    }
+    #join-comunity{
+        font-size: 16px;
+        text-align: center;
+    }
+    #landing-page-slider {
+        grid-row: 2;
+        width: 100%;
+    }
+
+    #banner-wrapper {
+        height: 500px;
+        grid-column: 1;
+        max-width: 100vw;
+    }
+    #banner-wrapper h2 {
+        padding-top: 30%;
+        font-size: 1.5rem;
+        text-align: center;
+        letter-spacing: 1px;
+        width: 80%;
+    }
+    #banner-wrapper p {
+        width: 80%;
+        text-align: center;
+    }
+}

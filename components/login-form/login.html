@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <link rel="stylesheet" href="login-form.css">
+    <link rel="stylesheet" href="components/login-form/login-form.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
-<button id="loginBtn">Login</button>
-<p class="test"></p>
+    <b>Join us to delve into comprehensive statistics revealing drug use </b>
 <div class="overlay" id="overlay">
     <div class="login-form shown">
         <h2>Please login</h2>
@@ -28,7 +23,7 @@
             <input type="email" id="regEmail" class="fields-padding" placeholder="Email" required>
             <input type="password" id="regPassword" class="fields-padding" placeholder="Password" required>
             <button type="submit" class="fields-padding" onclick="checkUsers()">Register</button>
-            <a class="go-to-login" href="#" onclick="showLoginForm()">Don't have an account?</a>
+            <a class="go-to-login" href="#" onclick="showLoginForm()">Already have an account?</a>
 
         </form>
     </div>
