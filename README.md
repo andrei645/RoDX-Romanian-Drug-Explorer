@@ -1,6 +1,7 @@
 # RoDX-Romanian-Drug-Explorer
 
 # Software Requirements Specification
+IMPORTANT: The application should be opened with a hosting-like tool (e.g. LiveServer VSCode Extension).
 
 ## 1. Introduction
 
@@ -19,7 +20,7 @@ The Drug Consumption Analysis Platform is a standalone web application developed
 The primary users of the platform include researchers, policymakers, and individuals interested in understanding drug trends and patterns in Romania. Users are expected to have basic computer literacy skills.
 
 ### 2.3 Operating Environment
-The platform is designed to operate on modern web browsers, including Chrome, Firefox, and Safari, across various operating systems such as Windows, macOS, and Linux.
+The platform is designed to operate on modern web browsers, including Chrome, Firefox, and Safari, across various operating systems such as Windows, macOS, and Linux. 
 
 ## 3. System Features
 
