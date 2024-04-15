@@ -11,7 +11,13 @@ function goToSlide(index) {
   } else if (currentIndex >= slides.children.length) {
     currentIndex = 0; // Wrap around to the first slide
   }
-  slides.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+  if(window.innerWidth <= 768) {
+    slides.style.transform = `translateX(-${window.innerWidth * currentIndex -25}px)`;
+    } else if(window.innerWidth <= 1024){
+      slides.style.transform = `translateX(-${window.innerWidth * currentIndex}px)`;
+    } else {
+      slides.style.transform = `translateX(-${slideWidth * currentIndex + 50}px)`;
+    }
 }
 
 document.querySelector(".next").addEventListener("click", function() {

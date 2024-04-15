@@ -64,11 +64,11 @@
   }
   
   @media screen and (max-width : 768px) {
-    body {
+    /* body {
       display: grid;
       grid-template-rows: 15vh 1fr 25vh;
       grid-template-columns: 1fr;
-    }
+    } */
     .carousel {
       height: 100%;
       position: relative;
@@ -96,10 +96,12 @@
     }
     .caption{
       height: 40%;
+      width: 80%;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
       flex-direction: column;
+      padding: 20px 20px 20px 0;
     }
     .caption h2{
       font-size: 1.4rem;

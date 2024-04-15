@@ -61,7 +61,7 @@ body {
     grid-column: 1 / span 3;
     grid-row: 3;
     background-color: #0d1428;
-    margin-top: -80px;
+    margin-top: -130px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,7 +69,7 @@ body {
 }
 
 #banner-wrapper h2{
-    padding-top: 60px;
+    padding-top: 150px;
     color: rgb(202,213,245);
     letter-spacing: 2px;
     font-size: 2rem;
@@ -83,11 +83,30 @@ body {
     padding-bottom: 48px;
 }
 
+@media screen and (max-width : 1024px) {
+    #banner-wrapper {
+        margin-top: -250px;
+    }
+    #banner-wrapper h2 {
+        padding-top: 100px;
+    }
+    #banner-wrapper p{
+        padding-top: 24px;
+    }
+}
+
 @media screen and (max-width : 768px) {
+    body {
+        grid-template-columns: 1fr ;
+        grid-template-rows: 15vh 1fr 25vh;
+        column-gap: 0;
+        row-gap: 15px;
+        margin: 0;
+    }
     .mission {
         grid-column: 1 / span 3;
         grid-row: 1;
-        margin-left: -16px;
+        max-width: 100vw;
     }
     .mission-title {
         font-size: 1.5rem;
@@ -99,5 +118,22 @@ body {
     #landing-page-slider {
         grid-row: 2;
         width: 100%;
+    }
+
+    #banner-wrapper {
+        height: 500px;
+        grid-column: 1;
+        max-width: 100vw;
+    }
+    #banner-wrapper h2 {
+        padding-top: 30%;
+        font-size: 1.5rem;
+        text-align: center;
+        letter-spacing: 1px;
+        width: 80%;
+    }
+    #banner-wrapper p {
+        width: 80%;
+        text-align: center;
     }
 }
