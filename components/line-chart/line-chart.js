@@ -1,127 +1,158 @@
-
-const svg = document.querySelector('.line-chart');
-const lines = document.querySelectorAll('.polyline');
-
-function generateRandomDataSet(length, min, max) {
-    return Array.from({ length }, () => Math.floor(Math.random() * (max - min + 1)) + min);
-}
-
-function addLabelOnXAx(svg) {
-    const numLabelsX = 12; // Includem și zero
-
-    const lunilePrescurtate = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-      ];
-      
-
-    const distanceX = (710 - 20) / (numLabelsX - 1);
-
-    for (let i = 0; i < numLabelsX; i++) {
-
-        const x = 20 + i * distanceX;
-
-        const labelValue = lunilePrescurtate[i];
-
-        const text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-        text.setAttribute('x', x.toString());
-        text.setAttribute('y', '200');
-        text.setAttribute('text-anchor', 'middle');
-        text.textContent = labelValue.toString();
-
-        svg.querySelector('.labels-x').appendChild(text);
-
-        const line = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-        line.setAttribute('class', 'vertical-line');
-        line.setAttribute('x1', x.toString());
-        line.setAttribute('y1', '177');
-        line.setAttribute('x2', x.toString());
-        line.setAttribute('y2', '182');
-        line.setAttribute('stroke', 'black');
-        line.setAttribute('stroke-width', '1');
-        svg.appendChild(line);
+const mockedResponse = [
+    {
+        "month": "Jan",
+        "marijuana": 30,
+        "cocaine": 20,
+        "mdma": 37,
+        "heroin": 25
+    },
+    {
+        "month": "Feb",
+        "marijuana": 35,
+        "cocaine": 25,
+        "mdma": 18,
+        "heroin": 22
+    },
+    {
+        "month": "Mar",
+        "marijuana": 40,
+        "cocaine": 22,
+        "mdma": 20,
+        "heroin": 28
+    },
+    {
+        "month": "Apr",
+        "marijuana": 38,
+        "cocaine": 19,
+        "mdma": 21,
+        "heroin": 30
+    },
+    {
+        "month": "May",
+        "marijuana": 42,
+        "cocaine": 24,
+        "mdma": 23,
+        "heroin": 28
+    },
+    {
+        "month": "Jun",
+        "marijuana": 45,
+        "cocaine": 20,
+        "mdma": 19,
+        "heroin": 27
+    },
+    {
+        "month": "Jul",
+        "marijuana": 43,
+        "cocaine": 21,
+        "mdma": 22,
+        "heroin": 29
+    },
+    {
+        "month": "Aug",
+        "marijuana": 40,
+        "cocaine": 18,
+        "mdma": 20,
+        "heroin": 26
+    },
+    {
+        "month": "Sep",
+        "marijuana": 44,
+        "cocaine": 23,
+        "mdma": 24,
+        "heroin": 30
+    },
+    {
+        "month": "Oct",
+        "marijuana": 38,
+        "cocaine": 19,
+        "mdma": 21,
+        "heroin": 27
+    },
+    {
+        "month": "Nov",
+        "marijuana": 41,
+        "cocaine": 20,
+        "mdma": 23,
+        "heroin": 29
+    },
+    {
+        "month": "Dec",
+        "marijuana": 50,
+        "cocaine": 25,
+        "mdma": 26,
+        "heroin": 35
     }
-}
-
-function addCirclePointsOnLineIntersection(svg, lines, dataset) {
-    const pointRadius = 4;
-    const colors = ['blue', 'yellow', 'green', 'red'];
-    const lunilePrescurtate = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-    ];
-
-    lines.forEach((line, lineIndex) => {
-        const dataSet = dataset[lineIndex];
-        const distanceX = (710 - 20) / (lunilePrescurtate.length - 1); // Ajustăm distanța pe axa x
-
-        const points = dataSet.map((value, dataIndex) => {
-            const x = 20 + dataIndex * distanceX;
-            const y = 180 - value;
-
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-            circle.setAttribute('cx', x.toString());
-            circle.setAttribute('cy', y.toString());
-            circle.setAttribute('r', pointRadius.toString());
-            circle.setAttribute('fill', colors[lineIndex]);
-            svg.appendChild(circle);
-
-            if (dataIndex !== 0) {
-                const prevX = 20 + (dataIndex - 1) * distanceX;
-                const prevY = 180 - dataSet[dataIndex - 1];
-
-                const line = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-                line.setAttribute('x1', prevX.toString());
-                line.setAttribute('y1', prevY.toString());
-                line.setAttribute('x2', x.toString());
-                line.setAttribute('y2', y.toString());
-                line.setAttribute('stroke', colors[lineIndex]);
-                line.setAttribute('stroke-width', '2');
-                svg.appendChild(line);
-            }
-
-            return `${x},${y}`;
-        }).join(' ');
-
-        line.setAttribute('points', points);
-    });
-}
-
-
-
-const numPoints = 12;
-
-const dataSets = [
-    generateRandomDataSet(numPoints, 20, 50),
-    generateRandomDataSet(numPoints, 35, 80),
-    generateRandomDataSet(numPoints, 60, 120),
-    generateRandomDataSet(numPoints, 40, 160)
-
 ];
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+function drawChart(data) {
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+
+    const labels = data.map(item => item.month);
+    const marijuanaData = data.map(item => item.marijuana);
+    const cocaineData = data.map(item => item.cocaine);
+    const mdmaData = data.map(item => item.mdma);
+    const heroinData = data.map(item => item.heroin);
+
+    const maxData = Math.max(...marijuanaData, ...cocaineData, ...mdmaData, ...heroinData);
+
+    const colors = {
+        marijuana: 'red',
+        cocaine: 'blue',
+        mdma: 'yellow',
+        heroin: 'green'
+    };
+
+    ctx.beginPath();
+    ctx.moveTo(50, 350); // Y 
+    ctx.lineTo(50, 50);
+    ctx.moveTo(50, 350); // X 
+    ctx.lineTo(750, 350);
+    ctx.stroke();
+
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    const yAxisStep = maxData / 10;
+    for (let i = 0; i <= 10; i++) {
+        const y = 350 - (300 * (i * yAxisStep) / maxData);
+        ctx.fillText(Math.round(i * yAxisStep), 45, y);
+        ctx.moveTo(50, y);
+        ctx.lineTo(750, y);
+    }
+    ctx.strokeStyle = 'lightgrey';
+    ctx.stroke();
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    labels.forEach((label, index) => {
+        const x = 50 + (index * 60);
+        ctx.fillText(label, x, 370);
+    });
+
+    function drawLine(data, color) {
+        ctx.beginPath();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        data.forEach((value, index) => {
+            const x = 50 + (index * 60);
+            const y = 350 - (300 * value / maxData);
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+            ctx.arc(x, y, 3, 0, 2 * Math.PI);
+        });
+        ctx.stroke();
+    }
+
+    drawLine(marijuanaData, colors.marijuana);
+    drawLine(cocaineData, colors.cocaine);
+    drawLine(mdmaData, colors.mdma);
+    drawLine(heroinData, colors.heroin);
 }
 
-addLabelOnXAx(svg);
-addCirclePointsOnLineIntersection(svg, lines, dataSets);
+drawChart(response);
