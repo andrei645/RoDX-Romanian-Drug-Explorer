@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import controllers.DrugPopularity;
 import controllers.UserController;
 import exceptions.*;
 import io.jsonwebtoken.Claims;
@@ -23,6 +24,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,10 +34,13 @@ public class RequestHandler implements HttpHandler {
     private static final String SECRET_KEY = KeyGenerator.getInstance().getSecretKey();
     private final AuthorizationApi authorizationApi;
     private final UserApi userApi;
+    private final DrugPopularity drugsPopularity;
 
     public RequestHandler() {
         authorizationApi = new AuthorizationController();
         userApi = new UserController();
+        drugsPopularity = new DrugPopularity();
+
     }
 
     @Override
@@ -119,7 +124,13 @@ public class RequestHandler implements HttpHandler {
                         User user = fromJson(body, User.class);
                         response = String.valueOf(userApi.updateUser(user));
                         statusCode = 200;
-                    } else {
+                    }else if(method.equals("GET") && path.matches("/api/drug_popularity")) {
+                        List<models.DrugPopularity> drugs = drugsPopularity.getDrugPopularity();
+                        response = toJson(drugs);
+                        statusCode = 200;
+
+                    }
+                    else {
                         response = "Endpoint not found";
                         statusCode = 404;
                     }
