@@ -155,4 +155,4 @@ function drawChart(data) {
     drawLine(heroinData, colors.heroin);
 }
 
-drawChart(response);
+drawChart(mockedResponse);
