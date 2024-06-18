@@ -9,12 +9,14 @@ import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import controllers.DrugPopularityController;
+import controllers.ReportsDrugController;
 import controllers.UserController;
 import exceptions.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import models.DrugPopularity;
+import models.ReportsDrugModel;
 import models.User;
 import utils.DateDeserializer;
 import utils.KeyGenerator;
@@ -33,12 +35,13 @@ public class RequestHandler implements HttpHandler {
     private final AuthorizationApi authorizationApi;
     private final UserApi userApi;
     private final DrugPopularityController drugsPopularity;
+    private final ReportsDrugController reportsDrug;
 
     public RequestHandler() {
         authorizationApi = new AuthorizationController();
         userApi = new UserController();
         drugsPopularity = new DrugPopularityController();
-
+        reportsDrug = new ReportsDrugController();
     }
 
     @Override
@@ -122,6 +125,14 @@ public class RequestHandler implements HttpHandler {
                         String[] pathParts = path.split("/");
                         String county_id = pathParts[pathParts.length - 1];
                         List<DrugPopularity> drugs = drugsPopularity.getDrugPopularity(county_id);
+                        response = toJson(drugs);
+                        statusCode = 200;
+
+                    }
+                    else if(method.equals("GET") && path.matches("/api/drug_reports/[^/]+")) {
+                        String[] pathParts = path.split("/");
+                        String county_id = pathParts[pathParts.length - 1];
+                        List<ReportsDrugModel> drugs = reportsDrug.getAllReports(county_id);
                         response = toJson(drugs);
                         statusCode = 200;
 
