@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,16 +9,41 @@
     <link rel="stylesheet" href="styles/landing-page.css">
 
 </head>
+
 <body>
+    <script>
+        window.onload = function () {
+            if (localStorage.getItem('auth_code')) {
+                document.getElementById('join-comunity').style.display = "none";
+                document.getElementById('logged-container').style.display = "flex";
+            }
+            else {
+                document.getElementById('join-comunity').style.display = "flex";
+                document.getElementById('logged-container').style.display = "none";
+            }
+            document.getElementById('logout').addEventListener('click', function () {
+                localStorage.removeItem('auth_code');
+                window.location.reload();
+            });
+        }
+
+
+
+    </script>
     <section class="mission">
         <h2 class="mission-title">Romanian Drug Explorer</h2>
         <a id="join-comunity">Join us to delve into comprehensive statistics revealing drug use
         </a>
+        <div id="logged-container">
+            <a id="go-to-map" href="/index.html">Go to map -></a>
+            <button class="logout-btn" id="logout">Logout</button>
+        </div>
     </section>
     <section id="landing-page-slider"></section>
     <section id="banner-wrapper">
         <h2>Unveiling Romania's Substance Scene</h2>
-        <p>A Comprehensive Look at Our Nation's Substance Scene. Committed to combating drug abuse. Providing support, education, and resources for drug-free lives. Promoting a safer and informed society for all</p>
+        <p>A Comprehensive Look at Our Nation's Substance Scene. Committed to combating drug abuse. Providing support,
+            education, and resources for drug-free lives. Promoting a safer and informed society for all</p>
     </section>
     <section id="faq"></section>
     <section id="community-cards">
@@ -25,4 +51,5 @@
 
     <script src="js/landing-page.js" type="module"></script>
 </body>
+
 </html>
