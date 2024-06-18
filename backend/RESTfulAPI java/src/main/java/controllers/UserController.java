@@ -28,7 +28,7 @@ public class UserController implements UserApi {
             throw new NotFoundException("User not found");
         }
 
-        existingUser.setName(user.getName());
+        existingUser.setUsernname(user.getUsernname());
         existingUser.setPasswordHash(PasswordEncryptor.encryptPassword(user.getPasswordHash()));
 
         UserService.updateUser(existingUser);

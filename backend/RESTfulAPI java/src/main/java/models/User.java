@@ -3,7 +3,7 @@ package models;
 public class User {
 
     private String email;
-    private String name;
+    private String usernname;
     private String passwordHash;
 
     public User() {
@@ -11,7 +11,7 @@ public class User {
 
     public User(String email, String name, String passwordHash, String phoneNumber, String city, String role) {
         this.email = email;
-        this.name = name;
+        this.usernname = name;
         this.passwordHash = passwordHash;
     }
 
@@ -23,14 +23,6 @@ public class User {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPasswordHash() {
         return passwordHash;
     }
@@ -39,4 +31,11 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
+    public String getUsernname() {
+        return usernname;
+    }
+
+    public void setUsernname(String usernname) {
+        this.usernname = usernname;
+    }
 }

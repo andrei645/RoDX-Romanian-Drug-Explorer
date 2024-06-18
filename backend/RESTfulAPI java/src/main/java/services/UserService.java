@@ -12,7 +12,7 @@ public class UserService {
 
     public static User findUserByEmail(String email) {
 
-        String query = "SELECT email, name, password FROM users WHERE email = ?";
+        String query = "SELECT email, username, password FROM users WHERE email = ?";
 
         try (PreparedStatement statement = Data.getInstance().getConnection().prepareStatement(query)) {
             statement.setString(1, email);
@@ -22,7 +22,7 @@ public class UserService {
             if (resultSet.next()) {
                 User user = new User();
                 user.setEmail(resultSet.getString("email"));
-                user.setName(resultSet.getString("name"));
+                user.setUsernname(resultSet.getString("userame"));
                 user.setPasswordHash(resultSet.getString("password"));
                 return user;
             } else {
@@ -39,7 +39,7 @@ public class UserService {
 
         try (PreparedStatement statement = Data.getInstance().getConnection().prepareStatement(query)) {
             statement.setString(1, user.getEmail());
-            statement.setString(2, user.getName());
+            statement.setString(2, user.getUsernname());
             statement.setString(3, user.getPasswordHash());
 
             statement.executeUpdate();
@@ -50,10 +50,10 @@ public class UserService {
     }
 
     public static void updateUser(User user) {
-        String query = "UPDATE users SET name = ?, password = ? WHERE email = ?";
+        String query = "UPDATE users SET username = ?, password = ? WHERE email = ?";
 
         try (PreparedStatement statement = Data.getInstance().getConnection().prepareStatement(query)) {
-            statement.setString(1, user.getName());
+            statement.setString(1, user.getUsernname());
             statement.setString(2, user.getPasswordHash());
             statement.setString(6, user.getEmail());
 

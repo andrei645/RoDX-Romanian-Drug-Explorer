@@ -1,6 +1,7 @@
 package handlers;
 
-import api.*;
+import api.AuthorizationApi;
+import api.UserApi;
 import authorization.AuthenticationRequest;
 import authorization.AuthorizationController;
 import authorization.RegisterRequest;
@@ -9,11 +10,14 @@ import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import controllers.UserController;
-import exceptions.*;
+import exceptions.AuthenticationException;
+import exceptions.RegisterConflictException;
+import exceptions.NotFoundException;
+import exceptions.AuthorizationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import models.*;
+import models.User;
 import utils.DateDeserializer;
 import utils.KeyGenerator;
 
@@ -26,7 +30,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 public class RequestHandler implements HttpHandler {
     private static final String SECRET_KEY = KeyGenerator.getInstance().getSecretKey();
@@ -60,7 +63,7 @@ public class RequestHandler implements HttpHandler {
         String method = exchange.getRequestMethod();
         String path = exchange.getRequestURI().getPath();
         String body = new BufferedReader(new InputStreamReader(exchange.getRequestBody()))
-                .lines().collect(Collectors.joining("\n"));
+              .lines().collect(Collectors.joining("\n"));
         String response;
         int statusCode;
 
@@ -97,15 +100,14 @@ public class RequestHandler implements HttpHandler {
                 String jwtToken = authorizationHeader.substring(7);
 
                 Claims claims = Jwts.parser()
-                        .setSigningKey(SECRET_KEY)
-                        .parseClaimsJws(jwtToken)
-                        .getBody();
+                      .setSigningKey(SECRET_KEY)
+                      .parseClaimsJws(jwtToken)
+                      .getBody();
 
                 //User role and subject obtained from jwt payload
                 String payloadUserMail = claims.getSubject();
 
                 String payloadUserRole = (String) claims.get("role");
-
 
                 try {
                     if (method.equals("DELETE") && path.matches("/api/users")) {
@@ -161,9 +163,9 @@ public class RequestHandler implements HttpHandler {
 
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(SECRET_KEY)
-                    .parseClaimsJws(token)
-                    .getBody();
+                  .setSigningKey(SECRET_KEY)
+                  .parseClaimsJws(token)
+                  .getBody();
 
             // Check if the token has expired
             Date expirationDate = claims.getExpiration();
@@ -174,6 +176,5 @@ public class RequestHandler implements HttpHandler {
             return false;
         }
     }
-
 
 }
