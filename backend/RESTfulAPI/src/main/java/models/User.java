@@ -3,15 +3,14 @@ package models;
 public class User {
 
     private String email;
-    private String name;
+    private String username;
     private String passwordHash;
-
     public User() {
     }
 
-    public User(String email, String name, String passwordHash, String phoneNumber, String city, String role) {
+    public User(String email, String username, String passwordHash) {
         this.email = email;
-        this.name = name;
+        this.username = username;
         this.passwordHash = passwordHash;
     }
 
@@ -23,12 +22,12 @@ public class User {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPasswordHash() {

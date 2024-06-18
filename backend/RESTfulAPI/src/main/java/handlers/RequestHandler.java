@@ -14,7 +14,7 @@ import exceptions.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import models.*;
+import models.User;
 import utils.DateDeserializer;
 import utils.KeyGenerator;
 
@@ -24,9 +24,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import java.util.List;
 import java.util.stream.Collectors;
-
 
 public class RequestHandler implements HttpHandler {
     private static final String SECRET_KEY = KeyGenerator.getInstance().getSecretKey();
@@ -43,7 +41,6 @@ public class RequestHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-
         if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
             // Set CORS headers for preflight request
             exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
@@ -63,11 +60,11 @@ public class RequestHandler implements HttpHandler {
         String method = exchange.getRequestMethod();
         String path = exchange.getRequestURI().getPath();
         String body = new BufferedReader(new InputStreamReader(exchange.getRequestBody()))
-                .lines().collect(Collectors.joining("\n"));
+              .lines().collect(Collectors.joining("\n"));
         String response;
         int statusCode;
 
-        //Public endpoints section, don't need authorization
+        // Public endpoints section, don't need authorization
         if (method.equals("POST") && path.matches("/api/register")) {
             try {
                 RegisterRequest registerRequest = fromJson(body, RegisterRequest.class);
@@ -93,22 +90,19 @@ public class RequestHandler implements HttpHandler {
                 statusCode = 500;
             }
         } else {
-            //Here is the part where authorization by jwt is made
-            //removed "Bearer " from jwt
-
+            // Here is the part where authorization by JWT is made
+            // Removed "Bearer " from JWT
             if (authorizationHeader != null && isValidToken(authorizationHeader.substring(7))) {
                 String jwtToken = authorizationHeader.substring(7);
 
                 Claims claims = Jwts.parser()
-                        .setSigningKey(SECRET_KEY)
-                        .parseClaimsJws(jwtToken)
-                        .getBody();
+                      .setSigningKey(SECRET_KEY)
+                      .parseClaimsJws(jwtToken)
+                      .getBody();
 
-                //User role and subject obtained from jwt payload
+                // User role and subject obtained from JWT payload
                 String payloadUserMail = claims.getSubject();
-
                 String payloadUserRole = (String) claims.get("role");
-
 
                 try {
                     if (method.equals("DELETE") && path.matches("/api/users")) {
@@ -155,11 +149,9 @@ public class RequestHandler implements HttpHandler {
     }
 
     private <T> T fromJson(String json, Class<T> clazz) {
-
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer("dd-MM-yyyy"));
         Gson gson = gsonBuilder.create();
-
         return gson.fromJson(json, clazz);
     }
 
@@ -168,22 +160,18 @@ public class RequestHandler implements HttpHandler {
     }
 
     private boolean isValidToken(String token) {
-
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(SECRET_KEY)
-                    .parseClaimsJws(token)
-                    .getBody();
+                  .setSigningKey(SECRET_KEY)
+                  .parseClaimsJws(token)
+                  .getBody();
 
             // Check if the token has expired
             Date expirationDate = claims.getExpiration();
             Date now = new Date();
             return !expirationDate.before(now);
-
         } catch (JwtException e) {
             return false;
         }
     }
-
-
 }

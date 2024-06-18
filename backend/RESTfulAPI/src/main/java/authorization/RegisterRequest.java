@@ -3,15 +3,15 @@ package authorization;
 public class RegisterRequest {
 
     private String email;
-    private String name;
+    private String username;
     private String password;
 
     public RegisterRequest() {
     }
 
-    public RegisterRequest(String email, String name, String password, String phoneNumber, String city, String role) {
+    public RegisterRequest(String email, String username, String password) {
         this.email = email;
-        this.name = name;
+        this.username = username;
         this.password = password;
     }
 
@@ -23,12 +23,12 @@ public class RegisterRequest {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
