@@ -14,6 +14,7 @@ import exceptions.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
+import models.DrugPopularity;
 import models.User;
 import utils.DateDeserializer;
 import utils.KeyGenerator;
@@ -24,6 +25,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class RequestHandler implements HttpHandler {
@@ -116,9 +118,10 @@ public class RequestHandler implements HttpHandler {
                         User user = fromJson(body, User.class);
                         response = String.valueOf(userApi.updateUser(user));
                         statusCode = 200;
-                    }else if(method.equals("GET") && path.matches("/api/drug_popularity")) {
-                        Integer county_id = Integer.parseInt(body);
-                        List<models.DrugPopularity> drugs = drugsPopularity.getDrugPopularity(county_id);
+                    }else if(method.equals("GET") && path.matches("/api/drug_popularity/[^/]+")) {
+                        String[] pathParts = path.split("/");
+                        String county_id = pathParts[pathParts.length - 1];
+                        List<DrugPopularity> drugs = drugsPopularity.getDrugPopularity(county_id);
                         response = toJson(drugs);
                         statusCode = 200;
 

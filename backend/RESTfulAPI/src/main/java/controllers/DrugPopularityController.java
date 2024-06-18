@@ -9,7 +9,7 @@ import java.util.List;
 public class DrugPopularityController implements DrugPopularityApi {
 
     @Override
-    public List<models.DrugPopularity> getDrugPopularity(Integer county_id) {
+    public List<models.DrugPopularity> getDrugPopularity(String county_id) {
 
         List<models.DrugPopularity> drugList = new ArrayList<>();
         drugList = DrugPopularityService.getAllDrugsPopularity(county_id);
