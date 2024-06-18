@@ -55,7 +55,7 @@ function checkRegisterFields() {
     return document.getElementById("regUsername").value !== "" && document.getElementById("regEmail").value !== "" && document.getElementById("regPassword").value !== "";
 }
 
-function checkLoggedUser() {
+async function checkLoggedUser(){
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -65,16 +65,18 @@ function checkLoggedUser() {
             password: document.getElementById('password').value
         };
     
-        fetch('http://localhost:8080/api/authenticate', {
+        const response = await fetch('http://localhost:8080/api/authenticate', {
             method:'POST',
             body:JSON.stringify(loggedUser)
-        }).then((response)=>{
-            if(response.status === 200) {
-                window.location.href = "../../index.html";
-            } else {
-                document.querySelector(".go-to-register").classList.add("wrong");
-                document.querySelector(".go-to-register").innerText = "Error logging in";
-            }
-        })
+        });
+        if(response.status === 200) {
+            const jwt = await response.text();
+            localStorage.setItem('auth_code', jwt);
+            window.location.href = "../../index.html";
+        } else {
+            document.querySelector(".go-to-register").classList.add("wrong");
+            document.querySelector(".go-to-register").innerText = "Error logging in";
+        }
+
     }
 }
