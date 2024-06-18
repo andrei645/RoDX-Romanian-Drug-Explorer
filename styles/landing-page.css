@@ -15,7 +15,30 @@ body {
     justify-content: center;
     align-items: center;
 }
+#logged-container{
+    margin: 1rem;
+    display: flex;
+    gap: 20px;
+}
+#go-to-map{
 
+    position: relative;
+    font-size: 20px;
+    background-color:#0d1428;
+    border-radius: 10px;
+    padding: 1rem;
+    color: white;
+}
+
+.logout-btn{
+
+    border-radius: 10px;
+    border: 1px solid white;
+    padding: 1rem;
+    font-size: 20px;
+    cursor: pointer;
+
+}
 .mission {
     position: relative;
     padding: 4px 8px;

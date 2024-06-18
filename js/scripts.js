@@ -7,25 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-const screenWidth = window.innerWidth;
-const navigationList = document.getElementsByClassName("navigation-items");
-const navigationItem = document.getElementsByClassName("navigation-items__item");
-
-function loadLoginForm() {
-    document.querySelector(".login-form__load").addEventListener("click", (e) => {
-        window.location.href = "login.html"
-        console.log("test");
-    })
-}
 
 document.getElementById("support-us-btn").addEventListener("click", function() {
     window.location.href = "./components/payment/payment-form.html";
 });
 
-document.getElementById("explore-btn").addEventListener("click", function() {
-    window.location.href = "./index.html";
-});
 
 document.getElementById("community-btn").addEventListener("click", function() {
     window.location.href = "./landing-page.html";
 });
+
