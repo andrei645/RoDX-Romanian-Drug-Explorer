@@ -28,38 +28,23 @@ function showLoginForm() {
 
 function saveUser(username, email, password) {
     const newUserObject = {
-        username: username,
-        email: email,
-        password: password
+        username: document.getElementById('regUsername').value,
+        email: document.getElementById('regEmail').value,
+        password: document.getElementById('regPassword').value
     };
-    loginUsersArray.push(newUserObject);
-    localStorage.setItem("users", JSON.stringify(loginUsersArray));
-    console.log("New user added:", newUserObject);
-}
 
-function checkUsers() {
-    const existingUser = loginUsersArray.find(user => user.username === document.getElementById("regUsername").value);
-
-    if (checkRegisterFields()) {
-        if (!existingUser) {
-            saveUser(
-                document.getElementById("regUsername").value,
-                document.getElementById("regEmail").value,
-                document.getElementById("regPassword").value
-            );
-            document.querySelector(".go-to-login").classList.remove("wrong");
-            overlay.style.display = "none";
+    fetch('http://localhost:8080/api/register', {
+        method:'POST',
+        body:JSON.stringify(newUserObject)
+    }).then((response)=>{
+        console.log(response);
+        if(response.status === 201) {
+            window.location.href = "./login.html";
         } else {
             document.querySelector(".go-to-login").classList.add("wrong");
-            document.querySelector(".go-to-login").innerText = "This user already exists. Log in?";
-            checkLoggedUser();
+            document.querySelector(".go-to-login").innerText = "Error registering user";
         }
-    } else {
-        document.querySelector(".go-to-login").classList.add("wrong");
-        document.querySelector(".go-to-login").innerText = "All fields are required";
-    }
-    console.log("Updated loginUsersArray:", loginUsersArray);
-    window.location.href = "../../index.html";
+    })
 }
 
 function checkLoginFields() {
@@ -75,17 +60,21 @@ function checkLoggedUser() {
     const password = document.getElementById("password").value;
 
     if (checkLoginFields()) {
-        const existingUser = loginUsersArray.find(user => user.username === username && user.password === password);
-
-        if (existingUser) {
-            window.location.href = "../../index.html";
-        } else {
-            document.querySelector(".go-to-register").innerText = "User does not exist. Register?";
-            document.querySelector(".go-to-register").classList.add("wrong");
-        }
-    } else {
-        document.querySelector(".go-to-register").classList.add("wrong");
-        document.querySelector(".go-to-register").innerText = "All fields are required";
+        const loggedUser = {
+            email: document.getElementById('username').value,
+            password: document.getElementById('password').value
+        };
+    
+        fetch('http://localhost:8080/api/authenticate', {
+            method:'POST',
+            body:JSON.stringify(loggedUser)
+        }).then((response)=>{
+            if(response.status === 200) {
+                window.location.href = "../../index.html";
+            } else {
+                document.querySelector(".go-to-register").classList.add("wrong");
+                document.querySelector(".go-to-register").innerText = "Error logging in";
+            }
+        })
     }
 }
-
