@@ -4,12 +4,14 @@ async function getDrugPopularity() {
 
 
     const countyName = window.location.href.split("=")[1];
-    const data = await fetch('http://localhost:8080/api/drug_popularity/' + countyName, {
+    const auth_code = localStorage.getItem('auth_code');
+    const data = await fetch('http://localhost:8080/api/drug_reports/' + countyName, {
         method: 'GET',
         headers: {
-            'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MiIsImlhdCI6MTcxODc0MTA4OSwiZXhwIjoxNzE4NzQ0Njg5fQ.mrei03MjA1SvJRipwoKLpl-ocCVMSav9xegUU1EBjJj3ADeVakIc6JCEo7U71BtE1jKOOrAXU81fgEYdKa0C6w' // înlocuiește 'token_here' cu token-ul tău de autorizare
+            'Authorization': 'Bearer ' + auth_code
         }
     });
+
     const response = await data.json();
 
     const groupedData = {};

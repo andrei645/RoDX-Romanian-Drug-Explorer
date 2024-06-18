@@ -1,89 +1,3 @@
-const mockedResponse = [
-    {
-        "month": "Jan",
-        "marijuana": 30,
-        "cocaine": 20,
-        "mdma": 37,
-        "heroin": 25
-    },
-    {
-        "month": "Feb",
-        "marijuana": 35,
-        "cocaine": 25,
-        "mdma": 18,
-        "heroin": 22
-    },
-    {
-        "month": "Mar",
-        "marijuana": 40,
-        "cocaine": 22,
-        "mdma": 20,
-        "heroin": 28
-    },
-    {
-        "month": "Apr",
-        "marijuana": 38,
-        "cocaine": 19,
-        "mdma": 21,
-        "heroin": 30
-    },
-    {
-        "month": "May",
-        "marijuana": 42,
-        "cocaine": 24,
-        "mdma": 23,
-        "heroin": 28
-    },
-    {
-        "month": "Jun",
-        "marijuana": 45,
-        "cocaine": 20,
-        "mdma": 19,
-        "heroin": 27
-    },
-    {
-        "month": "Jul",
-        "marijuana": 43,
-        "cocaine": 21,
-        "mdma": 22,
-        "heroin": 29
-    },
-    {
-        "month": "Aug",
-        "marijuana": 40,
-        "cocaine": 18,
-        "mdma": 20,
-        "heroin": 26
-    },
-    {
-        "month": "Sep",
-        "marijuana": 44,
-        "cocaine": 23,
-        "mdma": 24,
-        "heroin": 30
-    },
-    {
-        "month": "Oct",
-        "marijuana": 38,
-        "cocaine": 19,
-        "mdma": 21,
-        "heroin": 27
-    },
-    {
-        "month": "Nov",
-        "marijuana": 41,
-        "cocaine": 20,
-        "mdma": 23,
-        "heroin": 29
-    },
-    {
-        "month": "Dec",
-        "marijuana": 50,
-        "cocaine": 25,
-        "mdma": 26,
-        "heroin": 35
-    }
-];
 
 function drawChart(data) {
     const canvas = document.getElementById('myCanvas');
@@ -155,4 +69,18 @@ function drawChart(data) {
     drawLine(heroinData, colors.heroin);
 }
 
-drawChart(mockedResponse);
+async function getDrugs(){
+
+    const countyName = window.location.href.split("=")[1];
+    const auth_code = localStorage.getItem('auth_code');
+    const data = await fetch('http://localhost:8080/api/drug_popularity/' + countyName, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + auth_code
+        }
+    });
+    
+    drawChart(await data.json())
+}
+
+getDrugs()
