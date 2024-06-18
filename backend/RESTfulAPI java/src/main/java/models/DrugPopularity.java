@@ -2,7 +2,7 @@ package models;
 
 public class DrugPopularity {
     private Integer id;
-    private String county;
+    private Integer county_id;
     private String month;
     private Integer year;
     private Integer marijuana;
@@ -11,10 +11,10 @@ public class DrugPopularity {
     private Integer heroin;
 
     public DrugPopularity(){}
-    public DrugPopularity(Integer id, String county, String month, Integer year,
+    public DrugPopularity(Integer id, Integer county_id, String month, Integer year,
                           Integer marijuana, Integer cocaine, Integer mdma, Integer heroin) {
         this.id = id;
-        this.county = county;
+        this.county_id = county_id;
         this.month = month;
         this.year = year;
         this.marijuana = marijuana;
@@ -28,8 +28,8 @@ public class DrugPopularity {
         return id;
     }
 
-    public String getCounty() {
-        return county;
+    public Integer getCounty() {
+        return county_id;
     }
 
     public String getMonth() {
@@ -60,8 +60,8 @@ public class DrugPopularity {
         this.id = id;
     }
 
-    public void setCounty(String county) {
-        this.county = county;
+    public void setCounty(Integer county_id) {
+        this.county_id = county_id;
     }
 
     public void setMonth(String month) {

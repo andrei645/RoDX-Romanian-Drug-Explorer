@@ -1,30 +1,29 @@
 package services;
 
 import dataprovider.Data;
-import models.User;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrugPopularity {
+public class DrugPopularityService {
 
-    public static List<models.DrugPopularity> getAllDrugsPopularity() {
+    public static List<models.DrugPopularity> getAllDrugsPopularity(Integer county_id) {
         List<models.DrugPopularity> drugPopularityList = new ArrayList<>();
 
-        String query = "SELECT id, county, month, year, marijuana, cocaine, mdma, heroin FROM drug_popularity;";
+        String query = "SELECT id, county, month, year, marijuana, cocaine, mdma, heroin FROM drug_popularity; where county_id = ?";
 
-        try (Connection conn = Data.getInstance().getConnection();
-             PreparedStatement statement = conn.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
+        try (PreparedStatement statement = Data.getInstance().getConnection().prepareStatement(query)) {
+            statement.setInt(1, county_id);
+
+            ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
                 models.DrugPopularity drugPopularity = new models.DrugPopularity();
                 drugPopularity.setId(resultSet.getInt("id"));
-                drugPopularity.setCounty(resultSet.getString("county"));
+                drugPopularity.setCounty(resultSet.getInt("county_id"));
                 drugPopularity.setMonth(resultSet.getString("month"));
                 drugPopularity.setYear(resultSet.getInt("year"));
                 drugPopularity.setMarijuana(resultSet.getInt("marijuana"));

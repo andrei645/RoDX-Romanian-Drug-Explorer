@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import controllers.DrugPopularity;
+import controllers.DrugPopularityController;
 import controllers.UserController;
 import exceptions.*;
 import io.jsonwebtoken.Claims;
@@ -22,9 +22,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,12 +32,12 @@ public class RequestHandler implements HttpHandler {
     private static final String SECRET_KEY = KeyGenerator.getInstance().getSecretKey();
     private final AuthorizationApi authorizationApi;
     private final UserApi userApi;
-    private final DrugPopularity drugsPopularity;
+    private final DrugPopularityController drugsPopularity;
 
     public RequestHandler() {
         authorizationApi = new AuthorizationController();
         userApi = new UserController();
-        drugsPopularity = new DrugPopularity();
+        drugsPopularity = new DrugPopularityController();
 
     }
 
@@ -125,7 +123,8 @@ public class RequestHandler implements HttpHandler {
                         response = String.valueOf(userApi.updateUser(user));
                         statusCode = 200;
                     }else if(method.equals("GET") && path.matches("/api/drug_popularity")) {
-                        List<models.DrugPopularity> drugs = drugsPopularity.getDrugPopularity();
+                        Integer county_id = Integer.parseInt(body);
+                        List<models.DrugPopularity> drugs = drugsPopularity.getDrugPopularity(county_id);
                         response = toJson(drugs);
                         statusCode = 200;
 
