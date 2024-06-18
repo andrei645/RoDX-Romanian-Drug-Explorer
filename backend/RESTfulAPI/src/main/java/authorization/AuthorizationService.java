@@ -25,7 +25,7 @@ public class AuthorizationService {
         if (checkIfUserExists == null) {
             User user = new User();
             user.setEmail(registerRequest.getEmail());
-            user.setName(registerRequest.getName());
+            user.setUsername(registerRequest.getUsername());
             user.setPasswordHash(PasswordEncryptor.encryptPassword(registerRequest.getPassword()));
             UserService.saveUser(user);
         } else {

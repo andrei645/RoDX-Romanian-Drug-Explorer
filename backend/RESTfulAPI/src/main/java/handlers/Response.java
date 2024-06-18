@@ -44,8 +44,8 @@ public class Response {
         this.body = body;
     }
 
-    public void addHeader(String name, String value) {
-        headers.put(name, value);
+    public void addHeader(String username, String value) {
+        headers.put(username, value);
     }
 
     public static Response ok() {
