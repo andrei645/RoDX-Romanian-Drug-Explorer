@@ -3,16 +3,16 @@ package models;
 import java.util.*;
 
 public class PieChartData {
-  String countyName;
-  Float marijuanaValue;
-  Float cocaineValue;
-  Float mdmaValue;
-  Float heroinValue;
-  Float amphetamineValue;
-  Float cannabis_resinValue;
+  String county;
+  String marijuanaValue;
+  String cocaineValue;
+  String mdmaValue;
+  String heroinValue;
+  String amphetamineValue;
+  String cannabis_resinValue;
 
-  public PieChartData(String countyName, Float marijuanaValue, Float cocaineValue, Float mdmaValue, Float heroinValue, Float amphetamineValue, Float cannabis_resinValue) {
-    this.countyName = countyName;
+  public PieChartData(String county, String marijuanaValue, String cocaineValue, String mdmaValue, String heroinValue, String amphetamineValue, String cannabis_resinValue) {
+    this.county = county;
     this.marijuanaValue = marijuanaValue;
     this.cocaineValue = cocaineValue;
     this.mdmaValue = mdmaValue;
@@ -21,59 +21,63 @@ public class PieChartData {
     this.cannabis_resinValue = cannabis_resinValue;
   }
 
-  public String getCountyName() {
-    return countyName;
+  public PieChartData() {
+
   }
 
-  public void setCountyName(String countyName) {
-    this.countyName = countyName;
+  public String getCounty() {
+    return county;
   }
 
-  public Float getMarijuanaValue() {
+  public void setCounty(String county) {
+    this.county = county;
+  }
+
+  public String getMarijuanaValue() {
     return marijuanaValue;
   }
 
-  public void setMarijuanaValue(Float marijuanaValue) {
+  public void setMarijuanaValue(String marijuanaValue) {
     this.marijuanaValue = marijuanaValue;
   }
 
-  public Float getCocaineValue() {
+  public String getCocaineValue() {
     return cocaineValue;
   }
 
-  public void setCocaineValue(Float cocaineValue) {
+  public void setCocaineValue(String cocaineValue) {
     this.cocaineValue = cocaineValue;
   }
 
-  public Float getMdmaValue() {
+  public String getMdmaValue() {
     return mdmaValue;
   }
 
-  public void setMdmaValue(Float mdmaValue) {
+  public void setMdmaValue(String mdmaValue) {
     this.mdmaValue = mdmaValue;
   }
 
-  public Float getHeroinValue() {
+  public String getHeroinValue() {
     return heroinValue;
   }
 
-  public void setHeroinValue(Float heroinValue) {
+  public void setHeroinValue(String heroinValue) {
     this.heroinValue = heroinValue;
   }
 
-  public Float getAmphetamineValue() {
+  public String getAmphetamineValue() {
     return amphetamineValue;
   }
 
-  public void setAmphetamineValue(Float amphetamineValue) {
+  public void setAmphetamineValue(String amphetamineValue) {
     this.amphetamineValue = amphetamineValue;
   }
 
-  public Float getCannabis_resinValue() {
+  public String getCannabis_resinValue() {
     return cannabis_resinValue;
   }
 
-  public void setCannabis_resinValue(Float cannabis_resinValue) {
+  public void setCannabis_resinValue(String cannabis_resinValue) {
     this.cannabis_resinValue = cannabis_resinValue;
   }
 }
