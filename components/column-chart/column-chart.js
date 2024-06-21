@@ -13,7 +13,7 @@ async function getDrugPopularity() {
     });
 
     const response = await data.json();
-
+    document.getElementById('chart-value-hidden').value = JSON.stringify(response);
     const groupedData = {};
 
     response.forEach(item => {
@@ -63,10 +63,41 @@ async function getDrugPopularity() {
         dataPointContainer.appendChild(maleColumn);
         dataPointContainer.appendChild(femaleColumn);
 
-
     });
+}
 
 
+function saveCSV() {
+
+    const chartValuesObject = JSON.parse(document.getElementById('chart-value-hidden').value);
+    const chartValuesArray = chartValuesObject.map(item => [item.year, item.countyId, item.male, item.female]);
+
+    const data = [
+        ["Year", "County", "Male", "Female"],
+        ...chartValuesArray
+    ];
+
+
+    const csvContent = data.map(e => e.join(",")).join("\n");
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "report_of_people.csv";
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 }
 
 getDrugPopularity();
+
+const downloadCSVButton = document.getElementById('download-csv');
+downloadCSVButton.addEventListener('click', () => {
+
+    saveCSV()
+
+});
