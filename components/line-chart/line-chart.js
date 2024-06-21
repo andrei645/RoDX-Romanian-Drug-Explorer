@@ -79,8 +79,35 @@ async function getDrugs(){
             'Authorization': 'Bearer ' + auth_code
         }
     });
-    
-    drawChart(await data.json())
+    const response = await data.json();
+
+    document.getElementById('line-chart-value').value = JSON.stringify(response);
+    drawChart(response)
 }
 
 getDrugs()
+
+document.getElementById('download-popularity').addEventListener('click', () => {
+
+    const chartValuesObject = JSON.parse(document.getElementById('line-chart-value').value);
+    const chartValuesArray = chartValuesObject.map(item => [item.county_id, item.month, item.year, item.marijuana, item.cocaine, item.mdma, item.heroin]);
+
+    const data = [
+        ["County", "Month", "Year", "Marijuana", "Cocaine", "Mdma", "Heroin"],
+        ...chartValuesArray
+    ];
+
+    const csvContent = data.map(e => e.join(",")).join("\n");
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "drugs_popularity.csv";
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+})

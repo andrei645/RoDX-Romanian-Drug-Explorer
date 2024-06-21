@@ -37,7 +37,6 @@ function saveUser(username, email, password) {
         method:'POST',
         body:JSON.stringify(newUserObject)
     }).then((response)=>{
-        console.log(response);
         if(response.status === 201) {
             window.location.href = "./login.html";
         } else {
